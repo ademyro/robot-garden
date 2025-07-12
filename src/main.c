@@ -32,7 +32,14 @@ int main() {
 
     glfwSetFramebufferSizeCallback(window, framebufferSizeCallback);
 
-    Maybe(Renderer) maybeRenderer = newRenderer();
+    const Maybe(ShaderLib) maybeLib = loadShaders();
+    if (!maybeLib.isSome) {
+        return -1;
+    }
+
+    const ShaderLib lib = maybeLib.value;
+
+    const Maybe(Renderer) maybeRenderer = newRenderer(&lib);
 
     if (!maybeRenderer.isSome) {
         return -1;
@@ -48,6 +55,8 @@ int main() {
     }
 
     deleteRenderer(&renderer);
+    freeShaders(&lib);
+
     glfwDestroyWindow(window);
     glfwTerminate();
     return 0;

@@ -1,15 +1,9 @@
 #include "render/render.h"
 
-Maybe(Renderer) newRenderer() {
+Maybe(Renderer) newRenderer(const ShaderLib *lib) {
     Renderer renderer;
 
-    const Maybe(Shader) maybeShader = newShader("basic");
-
-    if (!maybeShader.isSome) {
-        return None(Renderer);
-    }
-
-    renderer.shader = maybeShader.value;
+    renderer.shader = *lib->basic;
 
     float quadVertices[] = {
         -0.5f, -0.5f,

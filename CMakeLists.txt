@@ -12,6 +12,10 @@ target_include_directories(glad PUBLIC external/glad/include)
 
 add_executable(robot_garden_prototype src/main.c src/shader/shader.c
         src/render/render.c
-        src/texture/texture.c)
+        src/texture/texture.c
+        src/shader/loader.c
+        src/file/file.c
+        src/log/log.c)
+
 target_link_libraries(robot_garden_prototype glfw glad GL dl m)
-target_include_directories(robot_garden_prototype PUBLIC external/glad/include include)
+target_include_directories(robot_garden_prototype PUBLIC external external/glad/include include)

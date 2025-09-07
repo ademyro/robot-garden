@@ -1,24 +1,14 @@
-#include <time.h>
+#include <stdio.h>
+#include <stdarg.h>
 
 #include "log/log.h"
-#include "file/file.h"
 
-/**
- * The global logger state, silently managed by `log.c`.
- */
-static Logger logger;
+void debugLog(const char *msg, ...) {
+  va_list args;
+  va_start(args, msg);
 
-/**
- * Helper function that provides a file name for the current log file based on the date.
- *
- * If one already exists in the game’s log directory, it is iteratively given an integer suffix to differentiate it.
- */
-static const char *logFileName() {
+  vfprintf(stderr, msg, args);
 
-}
-
-void initLogger() {
-    logger.bufferSize = 0;
-
-    pthread_mutex_init(&logger.mutex, NULL);
+  va_end(args);
+  fputc('\n', stderr);
 }

@@ -6,13 +6,18 @@
 #include "shader/shader.h"
 #include "shader/loader.h"
 
+#include "texture/texture.h"
+
 #include "util/maybe.h"
 
 // temporary: add docstring later
 typedef struct {
     GLuint vao;
     GLuint vbo;
+    GLuint ebo;
+
     Shader shader;
+    Texture texture;
 } Renderer;
 
 DEF_MAYBE_TYPE_FOR(Renderer);

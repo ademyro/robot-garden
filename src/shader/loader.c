@@ -3,6 +3,7 @@
 #include <stdlib.h>
 
 #include "shader/shader.h"
+#include "log/log.h"
 
 /**
  * Helper function that loads an individual shader and attempts to allocate it on the heap.
@@ -13,6 +14,7 @@
 const Shader *loadIndividualShader(const char *folderName) {
     const Maybe(Shader) maybe = newShader(folderName);
     if (!maybe.isSome) {
+        debugLog("Shader creation failed: folder %s", folderName);
         return NULL;
     }
 
